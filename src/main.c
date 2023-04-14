@@ -1,6 +1,6 @@
 #include "stc32g.h"
-#include "Type_def.h"
 #include "stc32_stc8_usb.h"
+#include "Type_def.h"
 #include "STC32G_Delay.h"
 #include "coremark.h"
 #include "STC32G_Timer.h"
@@ -22,7 +22,7 @@ void main()
     EA = 1;
     while (DeviceState != DEVSTATE_CONFIGURED)
         ; // 等待 USB 完成配置
-
+		coremark_main();
     while (1)
     {
     }

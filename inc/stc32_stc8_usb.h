@@ -1,10 +1,10 @@
 #ifndef __USB_H__
 #define __USB_H__
 
-//╩╣╙├┤о┐┌б░printfб▒┤Є╙б╨┼╧в╨ш╞┴▒╬╥╘╧┬┴╜╕Ў╢и╥х
-//#define PRINTF_SEGLED         //printf╩ф│Ў╓╪╢и╧Є╡╜ISP╧┬╘╪╚э╝■╓╨╡─7╢╬╩¤┬ы╣▄
-//#define PRINTF_HID            //printf╩ф│Ў╓▒╜╙╓╪╢и╧Є╡╜USB HID╜╙┐┌
-
+//╩╣я┐╜├┤я┐╜я┐╜┌бя┐╜printfя┐╜я┐╜я┐╜я┐╜╙бя┐╜я┐╜╧вя┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜
+//#define PRINTF_SEGLED         //printfя┐╜я┐╜я┐╜я┐╜╪╢я┐╜я┐╜я┐╜ISPя┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜╨╡я┐╜7я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜
+//#define PRINTF_HID            //printfя┐╜я┐╜я┐╜╓▒я┐╜я┐╜я┐╜╪╢я┐╜я┐╜я┐╜USB HIDя┐╜╙┐я┐╜
+#include "Type_def.h"
 typedef bit BOOL;
 typedef unsigned char BYTE;
 typedef unsigned int WORD;

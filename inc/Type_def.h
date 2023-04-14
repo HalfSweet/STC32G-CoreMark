@@ -30,6 +30,8 @@ typedef unsigned char   uint8;  //  8 bits
 typedef unsigned int    uint16; // 16 bits 
 typedef unsigned long   uint32; // 32 bits 
 
+//typedef unsigned long size_t;
+
 //========================================================================
 
 #define	TRUE	1
@@ -37,7 +39,7 @@ typedef unsigned long   uint32; // 32 bits
 
 //========================================================================
 
-#define	NULL	0
+//#define	NULL	0
 
 //========================================================================
 
