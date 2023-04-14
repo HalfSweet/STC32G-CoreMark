@@ -272,7 +272,7 @@
               <MiscControls></MiscControls>
               <Define></Define>
               <Undefine></Undefine>
-              <IncludePath>.\inc</IncludePath>
+              <IncludePath>.\inc;.\coremark;.\coremark\simple</IncludePath>
             </VariousControls>
           </C251>
           <Ax51>
@@ -338,6 +338,56 @@
               <FileName>STC32G_Delay.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\src\STC32G_Delay.c</FilePath>
+            </File>
+            <File>
+              <FileName>STC32G_NVIC.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\STC32G_NVIC.c</FilePath>
+            </File>
+            <File>
+              <FileName>STC32G_Timer.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\STC32G_Timer.c</FilePath>
+            </File>
+            <File>
+              <FileName>STC32G_Timer_Isr.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\STC32G_Timer_Isr.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>CoreMark</GroupName>
+          <Files>
+            <File>
+              <FileName>core_list_join.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\coremark\core_list_join.c</FilePath>
+            </File>
+            <File>
+              <FileName>core_main.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\coremark\core_main.c</FilePath>
+            </File>
+            <File>
+              <FileName>core_matrix.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\coremark\core_matrix.c</FilePath>
+            </File>
+            <File>
+              <FileName>core_state.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\coremark\core_state.c</FilePath>
+            </File>
+            <File>
+              <FileName>core_util.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\coremark\core_util.c</FilePath>
+            </File>
+            <File>
+              <FileName>core_portme.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\coremark\simple\core_portme.c</FilePath>
             </File>
           </Files>
         </Group>

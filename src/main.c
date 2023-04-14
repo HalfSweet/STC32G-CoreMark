@@ -1,16 +1,23 @@
 #include "stc32g.h"
+#include "Type_def.h"
 #include "stc32_stc8_usb.h"
 #include "STC32G_Delay.h"
+#include "coremark.h"
+#include "STC32G_Timer.h"
+#include "STC32G_NVIC.h"
 
 char *USER_DEVICEDESC = NULL;
 char *USER_PRODUCTDESC = NULL;
 char *USER_STCISPCMD = "@STCISP#"; // 不停电自动 ISP 下载命令
 
+volatile u32 SysTickFlag = 0; // 从启动开始每1ms加1
+
 void CDC_init(void);
-const char helloStr[] = "Hello World!\r\n";
+void Timer_config(void);
 void main()
 {
     CDC_init();
+    Timer_config();
     IE2 |= 0x80; // 使能 USB 中断
     EA = 1;
     while (DeviceState != DEVSTATE_CONFIGURED)
@@ -18,8 +25,6 @@ void main()
 
     while (1)
     {
-        USB_SendData((BYTE *)helloStr, sizeof(helloStr));
-        delay_ms(1000);
     }
 }
 
@@ -34,4 +39,16 @@ void CDC_init(void)
     USBCLK = 0x00; // 设置 USB 时钟源为内部 48M 的 USB 专用 IRC
     USBCON = 0x90; // 使能 USB 功能
     usb_init();    // 调用 USB CDC 初始化库函数
+}
+
+void Timer_config(void)
+{
+    TIM_InitTypeDef TIM_InitStructure;                                   // 结构定义
+    TIM_InitStructure.TIM_Mode = TIM_16BitAutoReload;                    // 指定工作模式,   TIM_16BitAutoReload,TIM_16Bit,TIM_8BitAutoReload,TIM_16BitAutoReloadNoMask
+    TIM_InitStructure.TIM_ClkSource = TIM_CLOCK_1T;                      // 指定时钟源,     TIM_CLOCK_1T,TIM_CLOCK_12T,TIM_CLOCK_Ext
+    TIM_InitStructure.TIM_ClkOut = DISABLE;                              // 是否输出高速脉冲, ENABLE或DISABLE
+    TIM_InitStructure.TIM_Value = (u16)(65536UL - (MAIN_Fosc / 1000UL)); // 初值,
+    TIM_InitStructure.TIM_Run = ENABLE;                                  // 是否初始化后启动定时器, ENABLE或DISABLE
+    Timer_Inilize(Timer0, &TIM_InitStructure);                           // 初始化Timer0	  Timer0,Timer1,Timer2,Timer3,Timer4
+    NVIC_Timer0_Init(ENABLE, Priority_0);                                // 中断使能, ENABLE/DISABLE; 优先级(低到高) Priority_0,Priority_1,Priority_2,Priority_3
 }
