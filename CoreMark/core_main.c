@@ -160,7 +160,7 @@ coremark_main(int argc, char *argv[])
     }
 #if (MEM_METHOD == MEM_STATIC)
     results[0].memblock[0] = (void *)static_memblk;
-    results[0].size        = TOTAL_DATA_SIZE;
+    results[0]._size        = TOTAL_DATA_SIZE;
     results[0].err         = 0;
 #if (MULTITHREAD > 1)
 #error "Cannot use a static data area with multiple contexts!"
@@ -170,10 +170,10 @@ coremark_main(int argc, char *argv[])
     {
         ee_s32 malloc_override = get_seed(7);
         if (malloc_override != 0)
-            results[i].size = malloc_override;
+            results[i]._size = malloc_override;
         else
-            results[i].size = TOTAL_DATA_SIZE;
-        results[i].memblock[0] = portable_malloc(results[i].size);
+            results[i]._size = TOTAL_DATA_SIZE;
+        results[i].memblock[0] = portable_malloc(results[i]._size);
         results[i].seed1       = results[0].seed1;
         results[i].seed2       = results[0].seed2;
         results[i].seed3       = results[0].seed3;
@@ -184,7 +184,7 @@ coremark_main(int argc, char *argv[])
 for (i = 0; i < MULTITHREAD; i++)
 {
     results[i].memblock[0] = stack_memblock + i * TOTAL_DATA_SIZE;
-    results[i].size        = TOTAL_DATA_SIZE;
+    results[i]._size        = TOTAL_DATA_SIZE;
     results[i].seed1       = results[0].seed1;
     results[i].seed2       = results[0].seed2;
     results[i].seed3       = results[0].seed3;
@@ -202,7 +202,7 @@ for (i = 0; i < MULTITHREAD; i++)
             num_algorithms++;
     }
     for (i = 0; i < MULTITHREAD; i++)
-        results[i].size = results[i].size / num_algorithms;
+        results[i]._size = results[i]._size / num_algorithms;
     /* Assign pointers */
     for (i = 0; i < NUM_ALGORITHMS; i++)
     {
@@ -211,7 +211,7 @@ for (i = 0; i < MULTITHREAD; i++)
         {
             for (ctx = 0; ctx < MULTITHREAD; ctx++)
                 results[ctx].memblock[i + 1]
-                    = (char *)(results[ctx].memblock[0]) + results[0].size * j;
+                    = (char *)(results[ctx].memblock[0]) + results[0]._size * j;
             j++;
         }
     }
@@ -221,11 +221,11 @@ for (i = 0; i < MULTITHREAD; i++)
         if (results[i].execs & ID_LIST)
         {
             results[i].list = core_list_init(
-                results[0].size, results[i].memblock[1], results[i].seed1);
+                results[0]._size, results[i].memblock[1], results[i].seed1);
         }
         if (results[i].execs & ID_MATRIX)
         {
-            core_init_matrix(results[0].size,
+            core_init_matrix(results[0]._size,
                              results[i].memblock[2],
                              (ee_s32)results[i].seed1
                                  | (((ee_s32)results[i].seed2) << 16),
@@ -234,7 +234,7 @@ for (i = 0; i < MULTITHREAD; i++)
         if (results[i].execs & ID_STATE)
         {
             core_init_state(
-                results[0].size, results[i].seed1, results[i].memblock[3]);
+                results[0]._size, results[i].seed1, results[i].memblock[3]);
         }
     }
 
@@ -287,7 +287,7 @@ for (i = 0; i < MULTITHREAD; i++)
     seedcrc = crc16(results[0].seed1, seedcrc);
     seedcrc = crc16(results[0].seed2, seedcrc);
     seedcrc = crc16(results[0].seed3, seedcrc);
-    seedcrc = crc16(results[0].size, seedcrc);
+    seedcrc = crc16(results[0]._size, seedcrc);
 
     switch (seedcrc)
     {                /* test known output for common seeds */
@@ -355,7 +355,7 @@ for (i = 0; i < MULTITHREAD; i++)
     }
     total_errors += check_data_types();
     /* and report results */
-    ee_printf("CoreMark Size    : %lu\n", (long unsigned)results[0].size);
+    ee_printf("CoreMark Size    : %lu\n", (long unsigned)results[0]._size);
     ee_printf("Total ticks      : %lu\n", (long unsigned)total_time);
 #if HAS_FLOAT
     ee_printf("Total time (secs): %f\n", time_in_secs(total_time));

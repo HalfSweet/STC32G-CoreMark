@@ -141,7 +141,7 @@ typedef struct RESULTS_S
     ee_s16              seed2;       /* Initializing seed */
     ee_s16              seed3;       /* Initializing seed */
     void *              memblock[4]; /* Pointer to safe memory location */
-    ee_u32              size;        /* Size of the data */
+    ee_u32              _size;        /* Size of the data */
     ee_u32              iterations;  /* Number of iterations to execute */
     ee_u32              execs;       /* Bitmask of operations to execute */
     struct list_head_s *list;

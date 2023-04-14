@@ -88,7 +88,7 @@ calc_func(ee_s16 *_pdata, core_results *res)
             case 0:
                 if (dtype < 0x22) /* set min period for bit corruption */
                     dtype = 0x22;
-                retval = core_bench_state(res->size,
+                retval = core_bench_state(res->_size,
                                           res->memblock[3],
                                           res->seed1,
                                           res->seed2,

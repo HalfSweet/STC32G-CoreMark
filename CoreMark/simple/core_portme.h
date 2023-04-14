@@ -91,12 +91,13 @@ typedef long CORE_TICKS;
         ee_ptr_int needs to be the data type used to hold pointers, otherwise
    coremark may fail!!!
 */
-typedef signed short ee_s16;
-typedef unsigned short ee_u16;
-typedef signed int ee_s32;
+
+typedef signed int ee_s16;
+typedef unsigned int ee_u16;
+typedef signed long ee_s32;
 typedef double ee_f32;
 typedef unsigned char ee_u8;
-typedef unsigned int ee_u32;
+typedef unsigned long ee_u32;
 typedef ee_u32 ee_ptr_int;
 typedef unsigned long ee_size_t;
 /* align_mem :
