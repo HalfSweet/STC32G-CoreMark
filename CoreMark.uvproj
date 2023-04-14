@@ -272,7 +272,7 @@
               <MiscControls></MiscControls>
               <Define>CORE_DEBUG=0</Define>
               <Undefine></Undefine>
-              <IncludePath>.\inc;.\coremark;.\coremark\simple</IncludePath>
+              <IncludePath>.\inc;.\CoreMark;.\CoreMark\simple</IncludePath>
             </VariousControls>
           </C251>
           <Ax51>
@@ -362,37 +362,37 @@
             <File>
               <FileName>core_list_join.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\coremark\core_list_join.c</FilePath>
+              <FilePath>.\CoreMark\core_list_join.c</FilePath>
             </File>
             <File>
               <FileName>core_main.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\coremark\core_main.c</FilePath>
+              <FilePath>.\CoreMark\core_main.c</FilePath>
             </File>
             <File>
               <FileName>core_matrix.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\coremark\core_matrix.c</FilePath>
+              <FilePath>.\CoreMark\core_matrix.c</FilePath>
             </File>
             <File>
               <FileName>core_state.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\coremark\core_state.c</FilePath>
+              <FilePath>.\CoreMark\core_state.c</FilePath>
             </File>
             <File>
               <FileName>core_util.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\coremark\core_util.c</FilePath>
+              <FilePath>.\CoreMark\core_util.c</FilePath>
             </File>
             <File>
               <FileName>core_portme.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\coremark\simple\core_portme.c</FilePath>
+              <FilePath>.\CoreMark\simple\core_portme.c</FilePath>
             </File>
             <File>
               <FileName>ee_printf.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\coremark\simple\ee_printf.c</FilePath>
+              <FilePath>.\CoreMark\simple\ee_printf.c</FilePath>
             </File>
           </Files>
         </Group>

@@ -71,12 +71,12 @@ CORE_TICKS get_time(void);
 secs_ret   time_in_secs(CORE_TICKS ticks);
 
 /* Misc useful functions */
-ee_u16 crcu8(ee_u8 data, ee_u16 crc);
+ee_u16 crcu8(ee_u8 _data, ee_u16 crc);
 ee_u16 crc16(ee_s16 newval, ee_u16 crc);
 ee_u16 crcu16(ee_u16 newval, ee_u16 crc);
 ee_u16 crcu32(ee_u32 newval, ee_u16 crc);
 ee_u8  check_data_types(void);
-void * portable_malloc(ee_size_t size);
+void * portable_malloc(ee_size_t _size);
 void   portable_free(void *p);
 ee_s32 parseval(char *valstring);
 
@@ -181,3 +181,11 @@ ee_u32 core_init_matrix(ee_u32      blksize,
                         ee_s32      seed,
                         mat_params *p);
 ee_u16 core_bench_matrix(mat_params *p, ee_s16 seed, ee_u16 crc);
+
+#if MAIN_HAS_NOARGC
+MAIN_RETURN_TYPE
+coremark_main(void);
+#else
+MAIN_RETURN_TYPE
+coremark_main(int argc, char *argv[]);
+#endif

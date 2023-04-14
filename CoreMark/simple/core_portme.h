@@ -36,14 +36,14 @@ Original Author: Shay Gal-on
         and implementation of functions thereof.
 */
 #ifndef HAS_TIME_H
-#define HAS_TIME_H 1
+#define HAS_TIME_H 0
 #endif
 /* Configuration : USE_CLOCK
         Define to 1 if platform has the time.h header file,
         and implementation of functions thereof.
 */
 #ifndef USE_CLOCK
-#define USE_CLOCK 1
+#define USE_CLOCK 0
 #endif
 /* Configuration : HAS_STDIO
         Define to 1 if the platform has stdio.h.
@@ -62,8 +62,8 @@ Original Author: Shay Gal-on
 /* Configuration : CORE_TICKS
         Define type of return from the timing functions.
  */
-#include <time.h>
-typedef clock_t CORE_TICKS;
+//#include <time.h>
+typedef long CORE_TICKS;
 
 /* Definitions : COMPILER_VERSION, COMPILER_FLAGS, MEM_LOCATION
         Initialize these strings per platform
@@ -77,7 +77,7 @@ typedef clock_t CORE_TICKS;
 #endif
 #ifndef COMPILER_FLAGS
 #define COMPILER_FLAGS \
-    FLAGS_STR /* "Please put compiler flags here (e.g. -o3)" */
+        "None" /* "Please put compiler flags here (e.g. -o3)" */
 #endif
 #ifndef MEM_LOCATION
 #define MEM_LOCATION "STACK"
@@ -91,14 +91,14 @@ typedef clock_t CORE_TICKS;
         ee_ptr_int needs to be the data type used to hold pointers, otherwise
    coremark may fail!!!
 */
-typedef signed short   ee_s16;
+typedef signed short ee_s16;
 typedef unsigned short ee_u16;
-typedef signed int     ee_s32;
-typedef double         ee_f32;
-typedef unsigned char  ee_u8;
-typedef unsigned int   ee_u32;
-typedef ee_u32         ee_ptr_int;
-typedef size_t         ee_size_t;
+typedef signed int ee_s32;
+typedef double ee_f32;
+typedef unsigned char ee_u8;
+typedef unsigned int ee_u32;
+typedef ee_u32 ee_ptr_int;
+typedef unsigned long ee_size_t;
 /* align_mem :
         This macro is used to align an offset to point to a 32b value. It is
    used in the Matrix algorithm to initialize the input memory blocks.
@@ -150,8 +150,8 @@ typedef size_t         ee_size_t;
 #ifndef MULTITHREAD
 #define MULTITHREAD 1
 #define USE_PTHREAD 0
-#define USE_FORK    0
-#define USE_SOCKET  0
+#define USE_FORK 0
+#define USE_SOCKET 0
 #endif
 
 /* Configuration : MAIN_HAS_NOARGC
@@ -166,7 +166,7 @@ typedef size_t         ee_size_t;
    greater then 1.
 */
 #ifndef MAIN_HAS_NOARGC
-#define MAIN_HAS_NOARGC 0
+#define MAIN_HAS_NOARGC 1
 #endif
 
 /* Configuration : MAIN_HAS_NORETURN
@@ -187,15 +187,14 @@ extern ee_u32 default_num_contexts;
 
 typedef struct CORE_PORTABLE_S
 {
-    ee_u8 portable_id;
+        ee_u8 portable_id;
 } core_portable;
 
 /* target specific init/fini */
 void portable_init(core_portable *p, int *argc, char *argv[]);
 void portable_fini(core_portable *p);
 
-#if !defined(PROFILE_RUN) && !defined(PERFORMANCE_RUN) \
-    && !defined(VALIDATION_RUN)
+#if !defined(PROFILE_RUN) && !defined(PERFORMANCE_RUN) && !defined(VALIDATION_RUN)
 #if (TOTAL_DATA_SIZE == 1200)
 #define PROFILE_RUN 1
 #elif (TOTAL_DATA_SIZE == 2000)

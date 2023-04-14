@@ -28,7 +28,7 @@ Original Author: Shay Gal-on
         Provide malloc() functionality in a platform specific way.
 */
 void *
-portable_malloc(size_t size)
+portable_malloc(size_t _size)
 {
     return malloc(size);
 }
@@ -42,7 +42,7 @@ portable_free(void *p)
 }
 #else
 void *
-portable_malloc(size_t size)
+portable_malloc(size_t _size)
 {
     return NULL;
 }

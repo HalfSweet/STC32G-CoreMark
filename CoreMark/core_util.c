@@ -162,14 +162,14 @@ get_seed_32(int i)
 
 */
 ee_u16
-crcu8(ee_u8 data, ee_u16 crc)
+crcu8(ee_u8 _data, ee_u16 crc)
 {
     ee_u8 i = 0, x16 = 0, carry = 0;
 
     for (i = 0; i < 8; i++)
     {
-        x16 = (ee_u8)((data & 1) ^ ((ee_u8)crc & 1));
-        data >>= 1;
+        x16 = (ee_u8)((_data & 1) ^ ((ee_u8)crc & 1));
+        _data >>= 1;
 
         if (x16 == 1)
         {
