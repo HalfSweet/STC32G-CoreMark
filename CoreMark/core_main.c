@@ -54,7 +54,7 @@ iterate(void *pres)
 
     ee_u32        i;
     ee_u16        crc;
-    core_results *res        = (core_results *)pres;
+    core_results * edata res        = (core_results *)pres;
     ee_u32        iterations = res->iterations;
     res->crc                 = 0;
     res->crclist             = 0;
@@ -120,7 +120,7 @@ MAIN_RETURN_TYPE
 coremark_main(void)
 {
     int   argc = 0;
-    char *argv[1];
+    char * edata argv[1];
 #else
 MAIN_RETURN_TYPE
 coremark_main(int argc, char *argv[])

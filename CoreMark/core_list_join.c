@@ -160,10 +160,10 @@ core_bench_list(core_results *res, ee_s16 finder_idx)
 {
     ee_u16     retval = 0;
     ee_u16     found = 0, missed = 0;
-    list_head *list     = res->list;
+    list_head * edata list     = res->list;
     ee_s16     find_num = res->seed3;
-    list_head *this_find;
-    list_head *finder, *remover;
+    list_head * edata this_find;
+    list_head * edata finder, *remover;
     list_data  info = {0};
     ee_s16     i;
 
@@ -260,7 +260,7 @@ core_list_init(ee_u32 blksize, list_head *memblock, ee_s16 seed)
     list_data *datablock_end = datablock + size;
     /* some useful variables */
     ee_u32     i;
-    list_head *finder, *list = memblock;
+    list_head * edata finder, *list = memblock;
     list_data  info;
 
     /* create a fake items for the list head and tail */
@@ -340,7 +340,7 @@ core_list_insert_new(list_head * insert_point,
                      list_head * memblock_end,
                      list_data * datablock_end)
 {
-    list_head *newitem;
+    list_head * edata newitem;
 
     if ((*memblock + 1) >= memblock_end)
         return NULL;
@@ -376,8 +376,8 @@ core_list_insert_new(list_head * insert_point,
 list_head *
 core_list_remove(list_head *item)
 {
-    list_data *tmp;
-    list_head *ret = item->next;
+    list_data * edata tmp;
+    list_head * edata ret = item->next;
     /* swap data pointers */
     tmp        = item->info;
     item->info = ret->info;
@@ -407,7 +407,7 @@ core_list_remove(list_head *item)
 list_head *
 core_list_undo_remove(list_head *item_removed, list_head *item_modified)
 {
-    list_data *tmp;
+    list_data * edata tmp;
     /* swap data pointers */
     tmp                 = item_removed->info;
     item_removed->info  = item_modified->info;
@@ -464,7 +464,7 @@ core_list_find(list_head *list, list_data *info)
 list_head *
 core_list_reverse(list_head *list)
 {
-    list_head *next = NULL, *tmp;
+    list_head * edata next = NULL, *tmp;
     while (list)
     {
         tmp        = list->next;
@@ -499,7 +499,7 @@ core_list_reverse(list_head *list)
 list_head *
 core_list_mergesort(list_head *list, list_cmp cmp, core_results *res)
 {
-    list_head *p, *q, *e, *tail;
+    list_head * edata p, * edata q, * edata e, * edata tail;
     ee_s32     insize, nmerges, psize, qsize, i;
 
     insize = 1;

@@ -50,10 +50,10 @@ core_bench_state(ee_u32 blksize,
                  ee_s16 step,
                  ee_u16 crc)
 {
-    ee_u32 final_counts[NUM_CORE_STATES];
-    ee_u32 track_counts[NUM_CORE_STATES];
-    ee_u8 *p = memblock;
-    ee_u32 i;
+    ee_u32 edata final_counts[NUM_CORE_STATES];
+    ee_u32 edata track_counts[NUM_CORE_STATES];
+    ee_u8  * edata p = memblock;
+    ee_u32 edata i;
 
 #if CORE_DEBUG
     ee_printf("State Bench: %d,%d,%d,%04x\n", seed1, seed2, step, crc);
@@ -139,8 +139,8 @@ static ee_u8 *errpat[4]   = { (ee_u8 *)"T0.3e-1F",
 void
 core_init_state(ee_u32 size, ee_s16 seed, ee_u8 *p)
 {
-    ee_u32 total = 0, next = 0, i;
-    ee_u8 *buf = 0;
+    ee_u32 edata total = 0, next = 0, i;
+    ee_u8 * edata buf = 0;
 #if CORE_DEBUG
     ee_u8 *start = p;
     ee_printf("State: %d,%d\n", size, seed);
@@ -197,7 +197,7 @@ core_init_state(ee_u32 size, ee_s16 seed, ee_u8 *p)
 static ee_u8
 ee_isdigit(ee_u8 c)
 {
-    ee_u8 retval;
+    ee_u8 edata retval;
     retval = ((c >= '0') & (c <= '9')) ? 1 : 0;
     return retval;
 }
@@ -216,8 +216,8 @@ ee_isdigit(ee_u8 c)
 enum CORE_STATE
 core_state_transition(ee_u8 **instr, ee_u32 *transition_count)
 {
-    ee_u8 *         str = *instr;
-    ee_u8           NEXT_SYMBOL;
+    ee_u8 * edata        str = *instr;
+    ee_u8 edata          NEXT_SYMBOL;
     enum CORE_STATE state = CORE_START;
     for (; *str && state != CORE_INVALID; str++)
     {

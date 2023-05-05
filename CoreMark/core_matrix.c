@@ -92,9 +92,9 @@ ee_u16
 core_bench_matrix(mat_params *p, ee_s16 seed, ee_u16 crc)
 {
     ee_u32  N   = p->N;
-    MATRES *C   = p->C;
-    MATDAT *A   = p->A;
-    MATDAT *B   = p->B;
+    MATRES * edata C   = p->C;
+    MATDAT * edata A   = p->A;
+    MATDAT * edata B   = p->B;
     MATDAT  val = (MATDAT)seed;
 
     crc = crc16(matrix_test(N, C, A, B, val), crc);
@@ -181,8 +181,8 @@ ee_u32
 core_init_matrix(ee_u32 blksize, void *memblk, ee_s32 seed, mat_params *p)
 {
     ee_u32  N = 0;
-    MATDAT *A;
-    MATDAT *B;
+    MATDAT * edata A;
+    MATDAT * edata B;
     ee_s32  order = 1;
     MATDAT  val;
     ee_u32  i = 0, j = 0;
