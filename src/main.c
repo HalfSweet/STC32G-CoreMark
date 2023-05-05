@@ -22,7 +22,9 @@ void main()
     EA = 1;
     while (DeviceState != DEVSTATE_CONFIGURED)
         ; // 等待 USB 完成配置
-		coremark_main();
+		delay_ms(500);
+    ee_printf("Hello \n");
+    coremark_main();
     while (1)
     {
     }
@@ -34,7 +36,7 @@ void CDC_init(void)
     P3M0 &= ~0x03;   // P3.0/P3.1 和 USB 的 D-/D+共用 PIN 脚，
     P3M1 |= 0x03;    // 需要将 P3.0/P3.1 设置为高阻输入模式
     IRC48MCR = 0x80; // 使能内部 48M 的 USB 专用 IRC
-    while (!(IRC48MCR & 0x01))
+    //while (!(IRC48MCR & 0x01))
         ;
     USBCLK = 0x00; // 设置 USB 时钟源为内部 48M 的 USB 专用 IRC
     USBCON = 0x90; // 使能 USB 功能

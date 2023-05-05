@@ -264,13 +264,13 @@
             <uUch>0</uUch>
             <uFlt64>0</uFlt64>
             <Fuzzy>3</Fuzzy>
-            <Optim>7</Optim>
-            <wLevel>2</wLevel>
+            <Optim>0</Optim>
+            <wLevel>0</wLevel>
             <SizSpd>1</SizSpd>
             <AcaOpt>0</AcaOpt>
             <VariousControls>
               <MiscControls></MiscControls>
-              <Define>CORE_DEBUG=0</Define>
+              <Define>CORE_DEBUG=0,USER_DEBUG=0</Define>
               <Undefine></Undefine>
               <IncludePath>.\inc;.\CoreMark;.\CoreMark\simple</IncludePath>
             </VariousControls>
@@ -295,7 +295,7 @@
             <WarningLevel>2</WarningLevel>
             <DataOverlaying>1</DataOverlaying>
             <OverlayString></OverlayString>
-            <MiscControls>REMOVEUNUSED</MiscControls>
+            <MiscControls></MiscControls>
             <DisableWarningNumbers></DisableWarningNumbers>
             <LinkerCmdFile></LinkerCmdFile>
             <Assign></Assign>

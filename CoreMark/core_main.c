@@ -51,6 +51,7 @@ static ee_u16 state_known_crc[]  = { (ee_u16)0x5e47,
 void *
 iterate(void *pres)
 {
+
     ee_u32        i;
     ee_u16        crc;
     core_results *res        = (core_results *)pres;
@@ -59,10 +60,20 @@ iterate(void *pres)
     res->crclist             = 0;
     res->crcmatrix           = 0;
     res->crcstate            = 0;
-
+#if USER_DEBUG
+    ee_printf("start iterate\n");
+#endif
     for (i = 0; i < iterations; i++)
     {
+#if USER_DEBUG
+    ee_printf("The %dst iterate\n", i);
+#endif
         crc      = core_bench_list(res, 1);
+
+#if USER_DEBUG
+    ee_printf("core_bench_list\n");
+#endif
+
         res->crc = crcu16(crc, res->crc);
         crc      = core_bench_list(res, -1);
         res->crc = crcu16(crc, res->crc);
@@ -115,13 +126,18 @@ MAIN_RETURN_TYPE
 coremark_main(int argc, char *argv[])
 {
 #endif
-    ee_u16       i, j = 0, num_algorithms = 0;
-    ee_s16       known_id = -1, total_errors = 0;
-    ee_u16       seedcrc = 0;
+	
+    ee_u16 edata      i, j = 0, num_algorithms = 0;
+    ee_s16 edata      known_id = -1, total_errors = 0;
+    ee_u16 edata      seedcrc = 0;
     CORE_TICKS   total_time;
-    core_results results[MULTITHREAD];
+    core_results edata results[MULTITHREAD];
 #if (MEM_METHOD == MEM_STACK)
-    ee_u8 stack_memblock[TOTAL_DATA_SIZE * MULTITHREAD];
+    ee_u8 edata stack_memblock[TOTAL_DATA_SIZE * MULTITHREAD];
+#endif
+	
+#if USER_DEBUG
+    ee_printf("coremark main start\n");
 #endif
     /* first call any initializations needed */
     portable_init(&(results[0].port), &argc, argv);
@@ -136,8 +152,13 @@ coremark_main(int argc, char *argv[])
     results[0].seed3      = get_seed(3);
     results[0].iterations = get_seed_32(4);
 #if CORE_DEBUG
-    results[0].iterations = 1;
+    results[0].iterations = 10;
 #endif
+		
+#if USER_DEBUG
+    ee_printf("test1\n");
+#endif
+
     results[0].execs = get_seed_32(5);
     if (results[0].execs == 0)
     { /* if not supplied, execute all algorithms */
@@ -158,10 +179,20 @@ coremark_main(int argc, char *argv[])
         results[0].seed2 = 0x3415;
         results[0].seed3 = 0x66;
     }
+		
+#if USER_DEBUG
+    ee_printf("test2\n");
+#endif
+		
 #if (MEM_METHOD == MEM_STATIC)
     results[0].memblock[0] = (void *)static_memblk;
     results[0]._size        = TOTAL_DATA_SIZE;
     results[0].err         = 0;
+
+#if USER_DEBUG
+    ee_printf("MEM_STATIC\n");
+#endif
+		
 #if (MULTITHREAD > 1)
 #error "Cannot use a static data area with multiple contexts!"
 #endif
@@ -190,10 +221,15 @@ for (i = 0; i < MULTITHREAD; i++)
     results[i].seed3       = results[0].seed3;
     results[i].err         = 0;
     results[i].execs       = results[0].execs;
+#if USER_DEBUG
+    ee_printf("MEM_STACK\n");
+#endif
+	
 }
 #else
 #error "Please define a way to initialize a memory block."
 #endif
+
     /* Data init */
     /* Find out how space much we have based on number of algorithms */
     for (i = 0; i < NUM_ALGORITHMS; i++)
@@ -215,6 +251,9 @@ for (i = 0; i < MULTITHREAD; i++)
             j++;
         }
     }
+#if USER_DEBUG
+    ee_printf("Data init\n");
+#endif
     /* call inits */
     for (i = 0; i < MULTITHREAD; i++)
     {
@@ -237,6 +276,10 @@ for (i = 0; i < MULTITHREAD; i++)
                 results[0]._size, results[i].seed1, results[i].memblock[3]);
         }
     }
+
+#if USER_DEBUG
+    ee_printf("call inits\n");
+#endif
 
     /* automatically determine number of iterations if not set */
     if (results[0].iterations == 0)
@@ -263,6 +306,11 @@ for (i = 0; i < MULTITHREAD; i++)
     }
     /* perform actual benchmark */
     start_time();
+
+#if USER_DEBUG
+    ee_printf("start_time\n");
+#endif
+
 #if (MULTITHREAD > 1)
     if (default_num_contexts > MULTITHREAD)
     {
@@ -282,6 +330,10 @@ for (i = 0; i < MULTITHREAD; i++)
     iterate(&results[0]);
 #endif
     stop_time();
+
+#if USER_DEBUG
+    ee_printf("stop_time\n");
+#endif
     total_time = get_time();
     /* get a function of the input to report */
     seedcrc = crc16(results[0].seed1, seedcrc);

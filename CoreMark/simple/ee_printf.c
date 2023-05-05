@@ -5,7 +5,7 @@
 
 int ee_printf(const char *fmt, ...)
 {
-    char buf[32];
+    char xdata buf[1024];
 		int len;
     va_list args;
 
